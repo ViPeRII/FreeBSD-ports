@@ -9567,8 +9567,8 @@ function sync_package_pfblockerng($cron='') {
 								exec("{$pfb_script_pre} {$file_dwn_esc} {$list['vtype']} {$elog}");
 							}
 
-							if (($fhandle = @fopen("{$file_dwn}.orig", 'r')) !== FALSE) {
-								while (($line = @fgets($fhandle)) !== FALSE) {
+							if (($fhandle = @fopen("{$file_dwn}.orig", 'r')) !== FALSE && filesize("{$file_dwn}.orig") > 0 ) {
+								while (($line = @fgets($fhandle, 1024)) !== FALSE) {
 									// Record original line for regex matching, if required.
 									$oline = $line;
 
